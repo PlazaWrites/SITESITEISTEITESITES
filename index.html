@@ -1,96 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Wave Links with Stars and Ripple</title>
-  <style>
-    html, body {
-      margin: 0; padding: 0; height: 100%; overflow: hidden;
-      background: black;
-      font-family: monospace, monospace;
-      color: white;
-    }
-    /* Starry background using CSS */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background:
-        radial-gradient(2px 2px at 20% 30%, white 90%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 50% 70%, white 90%, transparent 100%),
-        radial-gradient(2.5px 2.5px at 80% 80%, white 90%, transparent 100%),
-        radial-gradient(1px 1px at 40% 20%, white 90%, transparent 100%);
-      background-repeat: repeat;
-      background-size: 100px 100px;
-      animation: starMove 120s linear infinite;
-      z-index: 0;
-      opacity: 0.15;
-    }
-    @keyframes starMove {
-      from {background-position: 0 0, 0 0, 0 0, 0 0;}
-      to {background-position: 1000px 1000px, 500px 500px, 750px 750px, 600px 600px;}
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wave Links with Twinkling Stars and Ripple</title>
+<style>
+  html, body {
+    margin: 0; padding: 0; height: 100%; overflow: hidden;
+    background: black;
+    font-family: monospace, monospace;
+    color: white;
+    position: relative;
+  }
+  /* Container for stars */
+  .stars {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation-name: twinkle;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
+  @keyframes twinkle {
+    0% {opacity: 0.2;}
+    50% {opacity: 1;}
+    100% {opacity: 0.2;}
+  }
 
-    .container {
-      position: relative;
-      z-index: 1;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 40px;
-    }
+  .container {
+    position: relative;
+    z-index: 1;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+  }
 
-    a {
-      font-size: 3rem;
-      font-weight: bold;
-      text-decoration: none;
-      white-space: nowrap;
-      cursor: pointer;
-      filter: url(#wavy);
-      transition: filter 0.3s ease;
-    }
+  a {
+    font-size: 3rem;
+    font-weight: bold;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    filter: url(#wavy);
+    transition: filter 0.3s ease;
+  }
 
-    a span {
-      display: inline-block;
-      animation: wave 2s ease-in-out infinite;
-      transition: filter 0.3s ease, text-shadow 0.3s ease;
-    }
+  a span {
+    display: inline-block;
+    animation: wave 2s ease-in-out infinite;
+    transition: filter 0.3s ease, text-shadow 0.3s ease;
+  }
 
-    #works span {
-      background: linear-gradient(90deg, #30d5c8, #4b3df0);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-fill-color: transparent;
-    }
+  #works span {
+    background: linear-gradient(90deg, #30d5c8, #4b3df0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
 
-    #email span {
-      background: linear-gradient(90deg, #ff5f9e, #8f00ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-fill-color: transparent;
-    }
+  #email span {
+    background: linear-gradient(90deg, #ff5f9e, #8f00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
 
-    a:hover {
-      filter: url(#liquid);
-    }
+  a:hover {
+    filter: url(#liquid);
+  }
 
-    a:hover span {
-      filter: brightness(1.7);
-      text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-    }
+  a:hover span {
+    filter: brightness(1.7);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  }
 
-    @keyframes wave {
-      0%, 100% { transform: translateY(0); }
-      25% { transform: translateY(-10px); }
-      50% { transform: translateY(0); }
-      75% { transform: translateY(10px); }
-    }
-  </style>
+  @keyframes wave {
+    0%, 100% { transform: translateY(0); }
+    25% { transform: translateY(-10px); }
+    50% { transform: translateY(0); }
+    75% { transform: translateY(10px); }
+  }
+</style>
 </head>
 <body>
 
@@ -105,25 +107,58 @@
     </filter>
   </svg>
 
+  <div class="stars" id="stars"></div>
+
   <div class="container">
     <a href="https://plazawrites.substack.com" target="_blank" rel="noopener" id="works">Works</a>
     <a href="mailto:plazaluis4002@gmail.com" id="email">Email me</a>
   </div>
 
-  <script>
-    function waveText(id) {
-      const el = document.getElementById(id);
-      const text = el.textContent;
-      el.textContent = '';
-      for (let i = 0; i < text.length; i++) {
-        const span = document.createElement('span');
-        span.textContent = text[i];
-        span.style.animationDelay = `${i * 0.15}s`;
-        el.appendChild(span);
-      }
+<script>
+  // Wave text animation per letter
+  function waveText(id) {
+    const el = document.getElementById(id);
+    const text = el.textContent;
+    el.textContent = '';
+    for (let i = 0; i < text.length; i++) {
+      const span = document.createElement('span');
+      span.textContent = text[i];
+      span.style.animationDelay = `${i * 0.15}s`;
+      el.appendChild(span);
     }
-    waveText('works');
-    waveText('email');
-  </script>
+  }
+  waveText('works');
+  waveText('email');
+
+  // Generate twinkling stars
+  const starCount = 80;  // Adjust for more/less stars
+  const starsContainer = document.getElementById('stars');
+
+  function randomRange(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  for (let i = 0; i < starCount; i++) {
+    const star = document.createElement('div');
+    star.classList.add('star');
+
+    // Random size between 1px and 3px
+    const size = randomRange(1, 3);
+    star.style.width = `${size}px`;
+    star.style.height = `${size}px`;
+
+    // Random position in viewport
+    star.style.top = `${Math.random() * 100}%`;
+    star.style.left = `${Math.random() * 100}%`;
+
+    // Random animation duration between 2s and 5s
+    star.style.animationDuration = `${randomRange(2, 5)}s`;
+
+    // Random animation delay so stars twinkle independently
+    star.style.animationDelay = `${randomRange(0, 5)}s`;
+
+    starsContainer.appendChild(star);
+  }
+</script>
 </body>
 </html>
