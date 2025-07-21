@@ -5,10 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Snake Wave Email + Works</title>
 <style>
-  body, html {
+  html, body {
     margin: 0;
+    padding: 0;
     height: 100%;
-    background-color: black;
+    background-color: black !important;
+    color: white;
     font-family: monospace, monospace;
     display: flex;
     justify-content: center;
@@ -24,4 +26,16 @@
     font-size: 3rem;
     font-weight: bold;
     text-decoration: none;
-    white-space: nowra
+    white-space: nowrap;
+    display: inline-block;
+    cursor: pointer;
+  }
+  a.wave-text {
+    color: #8A2BE2;
+  }
+  a.wave-text span {
+    display: inline-block;
+    animation: snakeWave 2s ease-in-out infinite;
+  }
+  a.works-link {
+    background: linear-gradient(90deg, #ff0000, #ff
