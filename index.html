@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Email Wave Test</title>
+<title>Works + Email Wave</title>
 <style>
   html, body {
     margin: 0; padding: 0; height: 100%;
@@ -14,42 +14,22 @@
     justify-content: center;
     align-items: center;
   }
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+  }
   a {
     font-size: 3rem;
     font-weight: bold;
     text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+  }
+  /* Purple gradient text for Email me */
+  a.wave-text {
     background: linear-gradient(90deg, #7b2ff7, #651fff);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-    white-space: nowrap;
-  }
-  a span {
-    display: inline-block;
-    animation: slither 2s ease-in-out infinite;
-  }
-  @keyframes slither {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(6px); }
-    50% { transform: translateX(12px); }
-    75% { transform: translateX(6px); }
-  }
-</style>
-</head>
-<body>
-  <a href="mailto:plazaluis4002@gmail.com" id="wave">Email me</a>
-
-<script>
-  const el = document.getElementById('wave');
-  const text = el.textContent;
-  el.textContent = '';
-  for (let i = 0; i < text.length; i++) {
-    const span = document.createElement('span');
-    span.textContent = text[i];
-    span.style.animationDelay = `${i * 0.15}s`;
-    el.appendChild(span);
-  }
-</script>
-</body>
-</html>
+    -webkit-text-fill-color
