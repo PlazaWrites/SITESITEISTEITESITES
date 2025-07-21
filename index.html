@@ -1,59 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Wave Links</title>
-<style>
-  html, body {
-    margin: 0; padding: 0; height: 100%;
-    background-color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: monospace, monospace;
-  }
-  .container {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    align-items: center;
-  }
-  a {
-    font-size: 3rem;
-    font-weight: bold;
-    text-decoration: none;
-    white-space: nowrap;
-    cursor: pointer;
-  }
-  a span {
-    display: inline-block;
-    animation: wave 2s ease-in-out infinite;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wave Links</title>
+  <style>
+    html, body {
+      margin: 0; padding: 0; height: 100%;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: monospace, monospace;
+    }
 
-  #works span {
-    background: linear-gradient(90deg, #003973, #1e3c72);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-  }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      align-items: center;
+    }
 
-  #email span {
-    background: linear-gradient(90deg, #7b2ff7, #651fff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-  }
+    a {
+      font-size: 3rem;
+      font-weight: bold;
+      text-decoration: none;
+      white-space: nowrap;
+      cursor: pointer;
+    }
 
-  @keyframes wave {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(6px); }
-    50% { transform: translateX(12px); }
-    75% { transform: translateX(6px); }
-  }
-</style>
+    a span {
+      display: inline-block;
+      animation: wave 2s ease-in-out infinite;
+      transition: filter 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    #works span {
+      background: linear-gradient(90deg, #1dd1a1, #4b3df0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+    }
+
+    #email span {
+      background: linear-gradient(90deg, #7b2ff7, #651fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+    }
+
+    a:hover span {
+      filter: brightness(1.7);
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+
+    @keyframes wave {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(6px); }
+      50% { transform: translateX(12px); }
+      75% { transform: translateX(6px); }
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -66,7 +75,7 @@
       const el = document.getElementById(id);
       const text = el.textContent;
       el.textContent = '';
-      for(let i = 0; i < text.length; i++) {
+      for (let i = 0; i < text.length; i++) {
         const span = document.createElement('span');
         span.textContent = text[i];
         span.style.animationDelay = `${i * 0.15}s`;
