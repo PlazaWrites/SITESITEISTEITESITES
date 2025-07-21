@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Wave Email Link</title>
+<title>Snake Wave Email + Works</title>
 <style>
   body {
     margin: 0;
@@ -13,31 +13,42 @@
     justify-content: center;
     align-items: center;
     font-family: monospace, monospace;
+    flex-direction: column;
+    gap: 30px;
   }
-  a.wave-text {
+  a.wave-text, a.works-link {
     font-size: 3rem;
     font-weight: bold;
-    color: #8A2BE2; /* purple */
     text-decoration: none;
     display: inline-block;
+    white-space: nowrap;
+  }
+  /* Purple snake wave */
+  a.wave-text {
+    color: #8A2BE2;
   }
   a.wave-text span {
     display: inline-block;
-    animation: wave 1.5s ease-in-out infinite;
+    animation: snakeWave 2s ease-in-out infinite;
   }
-  @keyframes wave {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+  /* Red gradient snake wave */
+  a.works-link {
+    background: linear-gradient(90deg, #ff0000, #ff5555, #cc0000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
   }
-</style>
-</head>
-<body>
-  <a href="mailto:plazaluis4002@gmail.com" class="wave-text" id="wave">Email me</a>
-
-  <script>
-    const el = document.getElementById('wave');
-    const text = el.textContent;
-    el.textContent = '';
-    for (let i = 0; i < text.length; i++) {
-      const span = document.createElement('span');
-      span.textContent = text[i];
+  a.works-link span {
+    display: inline-block;
+    animation: snakeWave 2s ease-in-out infinite;
+  }
+  @keyframes snakeWave {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(5px, -10px);
+    }
+    50% {
+      transform: translate(10px, 0);
