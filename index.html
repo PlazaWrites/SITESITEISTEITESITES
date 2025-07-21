@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Simple Wave Text</title>
+<title>Wave Gradient Text</title>
 <style>
   body {
     margin: 0;
@@ -17,32 +17,14 @@
   .wave-text {
     font-size: 3rem;
     font-weight: bold;
-    color: white; /* simple white text */
     display: inline-block;
+    background: linear-gradient(135deg, #4B0082, #3A0CA3, #8A2BE2, #4B0082);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
   }
   .wave-text span {
     display: inline-block;
-    animation: wave 1.5s ease-in-out infinite;
-  }
-  @keyframes wave {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-  }
-</style>
-</head>
-<body>
-  <div class="wave-text" id="wave">Email me</div>
-
-  <script>
-    const el = document.getElementById('wave');
-    const text = el.textContent;
-    el.textContent = '';
-    for (let i = 0; i < text.length; i++) {
-      const span = document.createElement('span');
-      span.textContent = text[i];
-      span.style.animationDelay = `${i * 0.15}s`;
-      el.appendChild(span);
-    }
-  </script>
-</body>
-</html>
+    animation: w
