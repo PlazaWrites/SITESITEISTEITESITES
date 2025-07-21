@@ -6,19 +6,41 @@
   <title>Wave Links</title>
   <style>
     html, body {
-      margin: 0; padding: 0; height: 100%;
-      background-color: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: black;
+      overflow: hidden;
       font-family: monospace, monospace;
     }
 
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://raw.githubusercontent.com/JulianLaval/canvas-particle-network/master/demo/media/bg-stars.png') repeat;
+      opacity: 0.1;
+      animation: drift 100s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes drift {
+      from { background-position: 0 0; }
+      to { background-position: 1000px 1000px; }
+    }
+
     .container {
+      position: relative;
+      z-index: 1;
       display: flex;
       flex-direction: column;
       gap: 40px;
       align-items: center;
+      justify-content: center;
+      height: 100vh;
     }
 
     a {
@@ -27,6 +49,7 @@
       text-decoration: none;
       white-space: nowrap;
       cursor: pointer;
+      filter: url(#wavy);
     }
 
     a span {
@@ -51,6 +74,10 @@
       text-fill-color: transparent;
     }
 
+    a:hover {
+      filter: url(#liquid);
+    }
+
     a:hover span {
       filter: brightness(1.7);
       text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
@@ -65,6 +92,17 @@
   </style>
 </head>
 <body>
+  <svg width="0" height="0">
+    <filter id="liquid">
+      <feTurbulence type="turbulence" baseFrequency="0.01" numOctaves="2" result="turbulence"/>
+      <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="8" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="wavy">
+      <feTurbulence type="turbulence" baseFrequency="0.005" numOctaves="1" result="turbulence"/>
+      <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
+
   <div class="container">
     <a href="https://plazawrites.substack.com" target="_blank" rel="noopener" id="works">Works</a>
     <a href="mailto:plazaluis4002@gmail.com" id="email">Email me</a>
