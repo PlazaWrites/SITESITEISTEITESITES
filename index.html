@@ -5,27 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>You Found Me!!</title>
 <style>
-  /* Reset */
   * {
     margin: 0; padding: 0; box-sizing: border-box;
   }
-  body, html {
+  html, body {
     height: 100%;
-    background-color: black;
+    background: black;
     overflow: hidden;
-    font-family: 'Courier New', Courier, monospace;
   }
   #sky {
     position: fixed;
     top: 0; left: 0;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
     z-index: 0;
-    background-color: black;
   }
-
-  /* Blue glowing stars */
   .star {
     position: absolute;
     background: #66ccff;
@@ -42,180 +36,79 @@
     100% { opacity: 0.4; transform: scale(1); }
   }
 
-  /* Blue glowing comets */
-  .comet {
-    position: absolute;
-    width: 150px;
-    height: 3px;
-    background: linear-gradient(90deg, rgba(102,204,255,0), rgba(102,204,255,1), rgba(102,204,255,0));
-    filter: drop-shadow(0 0 10px #66ccff);
-    border-radius: 999px;
-    opacity: 0;
-    animation-timing-function: linear;
-  }
-  @keyframes cometFly {
-    0% { left: -200vw; top: var(--start-top); opacity: 0; }
-    10% { opacity: 0.6; }
-    90% { opacity: 0.6; }
-    100% { left: 120vw; top: calc(var(--start-top) + 100vh); opacity: 0; }
-  }
-  @keyframes cometFall {
-    0% { top: -50vh; left: var(--start-left); opacity: 0; }
-    10% { opacity: 0.6; }
-    90% { opacity: 0.6; }
-    100% { top: 120vh; left: calc(var(--start-left) + 100vw); opacity: 0; }
-  }
-
-  /* Container for links */
-  #container {
-    position: relative;
-    z-index: 10;
-    height: 100vh;
+  body {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
-    user-select: none;
+    height: 100vh;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    background: black;
+    z-index: 10;
+    position: relative;
   }
-
-  /* Common link styles */
   a {
-    cursor: pointer;
-    font-size: 3rem;
     font-weight: bold;
-    text-decoration: none;
-    background-size: 600% 600%;
+    font-size: 2.5rem;
+    margin: 20px 0;
+    cursor: pointer;
+    user-select: none;
+    background: linear-gradient(90deg, #40e0d0, #4b0082);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: gradientShift 8s ease infinite;
-    display: inline-block;
-    position: relative;
+    animation: wave 3s infinite ease-in-out;
     transition: text-shadow 0.3s ease;
+    text-decoration: none;
   }
   a:hover {
-    text-shadow:
-      0 0 10px currentColor,
-      0 0 20px currentColor,
-      0 0 30px currentColor,
-      0 0 40px currentColor,
-      0 0 50px currentColor;
+    text-shadow: 0 0 8px #40e0d0, 0 0 20px #4b0082;
   }
 
-  /* Separate style for "works | obras" link */
   #works {
-    background: linear-gradient(270deg, #40E0D0, #4B0082, #6A5ACD);
-    animation-name: gradientShift;
+    background: linear-gradient(90deg, #40e0d0, #4b0082);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: wave 3s infinite ease-in-out;
   }
-
-  /* Separate style for "email me | envíame un email" link */
   #email {
-    background: linear-gradient(270deg, #FF69B4, #FF4500, #FF1493);
-    animation-name: gradientShift2;
+    background: linear-gradient(90deg, #ff69b4, #8a2be2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: wave 3s infinite ease-in-out;
   }
 
-  /* Slithering wave animation for text */
   @keyframes wave {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-
-  /* Animate each letter with a slight delay */
-  .wave span {
-    display: inline-block;
-    animation-name: wave;
-    animation-duration: 1.2s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
-  }
-
-  /* Different delays for wave effect */
-  .wave span:nth-child(odd) {
-    animation-delay: 0s;
-  }
-  .wave span:nth-child(even) {
-    animation-delay: 0.6s;
-  }
-
-  /* Gradient shift animations */
-  @keyframes gradientShift {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-  }
-  @keyframes gradientShift2 {
-    0%{background-position:100% 50%}
-    50%{background-position:0% 50%}
-    100%{background-position:100% 50%}
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
   }
 </style>
 </head>
 <body>
   <div id="sky"></div>
 
-  <div id="container">
-    <a id="works" href="#works" class="wave"></a>
-    <a id="email" href="mailto:plazaluis4002@gmail.com" class="wave"></a>
-  </div>
+  <a id="works" href="#" target="_blank" rel="noopener noreferrer">works | obras</a>
+  <a id="email" href="mailto:plazaluis4002@gmail.com">email me | envíame un correo</a>
 
 <script>
-  const worksText = 'works | obras';
-  const emailText = 'email me | envíame un email';
-
-  function waveify(element, text) {
-    element.innerHTML = '';
-    for(let i = 0; i < text.length; i++) {
-      const span = document.createElement('span');
-      span.textContent = text[i];
-      // Stagger animation delay to create wave effect:
-      span.style.animationDelay = (i * 0.1) + 's';
-      element.appendChild(span);
-    }
-  }
-
-  waveify(document.getElementById('works'), worksText);
-  waveify(document.getElementById('email'), emailText);
-
-  // Star and comet background generation
   const sky = document.getElementById('sky');
+  const starCount = 70;
 
-  // Create 120 blue glowing stars randomly placed
-  for(let i = 0; i < 120; i++) {
+  for (let i = 0; i < starCount; i++) {
     const star = document.createElement('div');
     star.classList.add('star');
-    const size = Math.random() * 3 + 1; // 1 to 4 px
+    const size = Math.random() * 3 + 1; // 1px to 4px
     star.style.width = size + 'px';
     star.style.height = size + 'px';
     star.style.top = Math.random() * 100 + 'vh';
     star.style.left = Math.random() * 100 + 'vw';
-    star.style.animationDelay = (Math.random() * 4) + 's';
+    star.style.animationDuration = (2 + Math.random() * 3) + 's';
+    star.style.animationDelay = Math.random() * 4 + 's';
     sky.appendChild(star);
-  }
-
-  // Create 10 blue glowing comets with random start positions
-  for(let i = 0; i < 10; i++) {
-    const comet = document.createElement('div');
-    comet.classList.add('comet');
-
-    // Randomly choose animation type and set CSS variables for start positions
-    const fromTop = Math.random() < 0.5;
-
-    if (fromTop) {
-      // start from left top corner, flying diagonally down-right
-      const startTop = Math.random() * 70 + 5; // 5vh to 75vh
-      comet.style.setProperty('--start-top', startTop + 'vh');
-      comet.style.animation = `cometFly ${7 + Math.random() * 5}s linear infinite`;
-      comet.style.top = startTop + 'vh';
-      comet.style.left = '-150px';
-    } else {
-      // start from left bottom corner, falling diagonally up-right
-      const startLeft = Math.random() * 70 + 5; // 5vw to 75vw
-      comet.style.setProperty('--start-left', startLeft + 'vw');
-      comet.style.animation = `cometFall ${7 + Math.random() * 5}s linear infinite`;
-      comet.style.left = startLeft + 'vw';
-      comet.style.top = '-50px';
-    }
-    sky.appendChild(comet);
   }
 </script>
 </body>
