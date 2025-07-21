@@ -9,7 +9,7 @@
     body {
       margin: 0;
       font-family: 'Courier Prime', monospace;
-      color: #ddd;
+      color: #eee;
       background: linear-gradient(135deg, #4B0082, #3A0CA3, #000000, #555555);
       background-size: 400% 400%;
       animation: gradientShift 15s ease infinite;
@@ -28,4 +28,26 @@
       50% {background-position: 100% 50%;}
       100% {background-position: 0% 50%;}
     }
+
+    a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 2.5rem;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.3s, text-shadow 0.3s;
+      cursor: pointer;
+      text-shadow: 0 0 5px #8A2BE2;
+    }
+
+    a:hover {
+      border-color: #8A2BE2;
+      text-shadow: 0 0 15px #8A2BE2;
+    }
+  </style>
+</head>
+<body>
+  <a href="mailto:plazaluis4002@GMAIL.COM" aria-label="Send Email">Email me</a>
+  <a href="https://plazawrites.substack.com" target="_blank" rel="noopener noreferrer" aria-label="Visit My Work">My Work</a>
+</body>
+</html>
 
