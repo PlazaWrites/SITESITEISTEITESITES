@@ -5,22 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>You Found Me!!</title>
 <style>
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-  }
-  html, body {
-    height: 100%;
+  @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
+  body {
+    margin: 0;
+    height: 100vh;
     background: black;
-    overflow: hidden;
+    font-family: 'Special Elite', monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    position: relative;
+    z-index: 10;
   }
+
   #sky {
     position: fixed;
     top: 0; left: 0;
     width: 100vw;
     height: 100vh;
     z-index: 0;
+    pointer-events: none; /* Let clicks pass through stars */
   }
+
   .star {
+    pointer-events: none;
     position: absolute;
     background: #66ccff;
     border-radius: 50%;
@@ -30,25 +41,15 @@
       0 0 15px 7px rgba(102, 204, 255, 0.5);
     animation: twinkleBlue 4s infinite alternate ease-in-out;
   }
+
   @keyframes twinkleBlue {
-    0% { opacity: 0.4; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.3); }
-    100% { opacity: 0.4; transform: scale(1); }
+    0% {opacity: 0.3;}
+    100% {opacity: 1;}
   }
 
-  body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    color: white;
-    font-family: 'Courier New', Courier, monospace;
-    background: black;
-    z-index: 10;
-    position: relative;
-  }
   a {
+    position: relative;
+    z-index: 20;
     font-weight: bold;
     font-size: 2.5rem;
     margin: 20px 0;
@@ -61,55 +62,41 @@
     transition: text-shadow 0.3s ease;
     text-decoration: none;
   }
+
   a:hover {
     text-shadow: 0 0 8px #40e0d0, 0 0 20px #4b0082;
   }
 
-  #works {
-    background: linear-gradient(90deg, #40e0d0, #4b0082);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: wave 3s infinite ease-in-out;
-  }
-  #email {
-    background: linear-gradient(90deg, #ff69b4, #8a2be2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: wave 3s infinite ease-in-out;
-  }
-
   @keyframes wave {
-    0%, 100% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
   }
 </style>
 </head>
 <body>
-  <div id="sky"></div>
 
-  <a id="works" href="#" target="_blank" rel="noopener noreferrer">works | obras</a>
-  <a id="email" href="mailto:plazaluis4002@gmail.com">email me | envíame un correo</a>
+<a href="https://plazawrites.substack.com" target="_blank" rel="noopener noreferrer">works | obras</a>
+<a href="mailto:plazaluis4002@gmail.com">email me | envíame</a>
+
+<div id="sky"></div>
 
 <script>
   const sky = document.getElementById('sky');
-  const starCount = 70;
+  const starCount = 100;
 
   for (let i = 0; i < starCount; i++) {
     const star = document.createElement('div');
     star.classList.add('star');
-    const size = Math.random() * 3 + 1; // 1px to 4px
+    const size = Math.random() * 2 + 1;
     star.style.width = size + 'px';
     star.style.height = size + 'px';
     star.style.top = Math.random() * 100 + 'vh';
     star.style.left = Math.random() * 100 + 'vw';
-    star.style.animationDuration = (2 + Math.random() * 3) + 's';
+    star.style.animationDuration = 2 + Math.random() * 3 + 's';
     star.style.animationDelay = Math.random() * 4 + 's';
     sky.appendChild(star);
   }
 </script>
+
 </body>
 </html>
