@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Wave Gradient Email</title>
+<title>Wave Email Link</title>
 <style>
   body {
     margin: 0;
@@ -14,9 +14,30 @@
     align-items: center;
     font-family: monospace, monospace;
   }
-  .wave-text {
+  a.wave-text {
     font-size: 3rem;
     font-weight: bold;
+    color: #8A2BE2; /* purple */
+    text-decoration: none;
     display: inline-block;
-    background: linear-gradient(135deg, #4B0082, #3A0CA3, #8A2BE2);
-    background-si
+  }
+  a.wave-text span {
+    display: inline-block;
+    animation: wave 1.5s ease-in-out infinite;
+  }
+  @keyframes wave {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+</style>
+</head>
+<body>
+  <a href="mailto:plazaluis4002@gmail.com" class="wave-text" id="wave">Email me</a>
+
+  <script>
+    const el = document.getElementById('wave');
+    const text = el.textContent;
+    el.textContent = '';
+    for (let i = 0; i < text.length; i++) {
+      const span = document.createElement('span');
+      span.textContent = text[i];
