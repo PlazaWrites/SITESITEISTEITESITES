@@ -3,162 +3,80 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>You found me!!!</title>
+<title>Plaza Writes</title>
 <style>
-  html, body {
-    margin: 0; padding: 0; height: 100%; overflow: hidden;
-    background: black;
-    font-family: monospace, monospace;
-    color: white;
-    position: relative;
-  }
-  /* Container for stars */
-  .stars {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    pointer-events: none;
-    z-index: 0;
-  }
-  .star {
-    position: absolute;
-    background: white;
-    border-radius: 50%;
-    opacity: 0.8;
-    animation-name: twinkle;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-  }
-  @keyframes twinkle {
-    0% {opacity: 0.2;}
-    50% {opacity: 1;}
-    100% {opacity: 0.2;}
-  }
+  @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
 
-  .container {
-    position: relative;
-    z-index: 1;
+  body {
+    margin: 0;
     height: 100vh;
+    background-color: #000;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 40px;
+    font-family: 'Special Elite', monospace;
+    overflow: hidden;
   }
 
   a {
-    font-size: 3rem;
-    font-weight: bold;
+    color: transparent;
+    background: linear-gradient(90deg, turquoise, indigo);
+    background-clip: text;
+    -webkit-background-clip: text;
     text-decoration: none;
-    white-space: nowrap;
-    cursor: pointer;
-    filter: url(#wavy);
-    transition: filter 0.3s ease;
-  }
-
-  a span {
+    font-size: 3.5rem;
+    font-weight: bold;
+    position: relative;
     display: inline-block;
-    animation: wave 2s ease-in-out infinite;
-    transition: filter 0.3s ease, text-shadow 0.3s ease;
-  }
-
-  #works span {
-    background: linear-gradient(90deg, #30d5c8, #4b3df0);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-  }
-
-  #email span {
-    background: linear-gradient(90deg, #ff5f9e, #8f00ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
+    cursor: pointer;
+    user-select: none;
+    animation: wave 3s infinite;
+    white-space: nowrap;
+    margin: 0.3em 0;
   }
 
   a:hover {
-    filter: url(#liquid);
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #4b0082;
   }
 
-  a:hover span {
-    filter: brightness(1.7);
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  /* Separate color for email */
+  .email {
+    background: linear-gradient(90deg, pink, violet);
+    -webkit-background-clip: text;
+    animation: wave 3s infinite;
   }
 
+  /* Wave animation for each letter */
   @keyframes wave {
     0%, 100% { transform: translateY(0); }
-    25% { transform: translateY(-10px); }
-    50% { transform: translateY(0); }
-    75% { transform: translateY(10px); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* Animate letters with delay to create wave effect */
+  .wave span {
+    display: inline-block;
+    animation-name: wave;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
   }
 </style>
 </head>
 <body>
 
-  <svg width="0" height="0">
-    <filter id="liquid">
-      <feTurbulence type="turbulence" baseFrequency="0.03" numOctaves="2" result="turbulence"/>
-      <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="10" xChannelSelector="R" yChannelSelector="G"/>
-    </filter>
-    <filter id="wavy">
-      <feTurbulence type="turbulence" baseFrequency="0.005" numOctaves="1" result="turbulence"/>
-      <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="4" xChannelSelector="R" yChannelSelector="G"/>
-    </filter>
-  </svg>
+<a href="https://plazawrites.substack.com" class="works wave" aria-label="Works | Obras">
+  <span style="animation-delay: 0s">w</span><span style="animation-delay: 0.1s">o</span><span style="animation-delay: 0.2s">r</span><span style="animation-delay: 0.3s">k</span><span style="animation-delay: 0.4s">s</span>
+  &nbsp;|&nbsp;
+  <span style="animation-delay: 0.5s">o</span><span style="animation-delay: 0.6s">b</span><span style="animation-delay: 0.7s">r</span><span style="animation-delay: 0.8s">a</span><span style="animation-delay: 0.9s">s</span>
+</a>
 
-  <div class="stars" id="stars"></div>
+<a href="mailto:plazaluis4002@gmail.com" class="email wave" aria-label="Email me | Escríbeme">
+  <span style="animation-delay: 0s">e</span><span style="animation-delay: 0.1s">m</span><span style="animation-delay: 0.2s">a</span><span style="animation-delay: 0.3s">i</span><span style="animation-delay: 0.4s">l</span>
+  &nbsp;
+  <span style="animation-delay: 0.5s">m</span><span style="animation-delay: 0.6s">e</span>
+  &nbsp;|&nbsp;
+  <span style="animation-delay: 0.7s">e</span><span style="animation-delay: 0.8s">s</span><span style="animation-delay: 0.9s">c</span><span style="animation-delay: 1s">r</span><span style="animation-delay: 1.1s">í</span><span style="animation-delay: 1.2s">b</span><span style="animation-delay: 1.3s">e</span><span style="animation-delay: 1.4s">m</span><span style="animation-delay: 1.5s">e</span>
+</a>
 
-  <div class="container">
-    <a href="https://plazawrites.substack.com" target="_blank" rel="noopener" id="works">Works</a>
-    <a href="mailto:plazaluis4002@gmail.com" id="email">Email me</a>
-  </div>
-
-<script>
-  // Wave text animation per letter
-  function waveText(id) {
-    const el = document.getElementById(id);
-    const text = el.textContent;
-    el.textContent = '';
-    for (let i = 0; i < text.length; i++) {
-      const span = document.createElement('span');
-      span.textContent = text[i];
-      span.style.animationDelay = `${i * 0.15}s`;
-      el.appendChild(span);
-    }
-  }
-  waveText('works');
-  waveText('email');
-
-  // Generate twinkling stars
-  const starCount = 80;  // Adjust for more/less stars
-  const starsContainer = document.getElementById('stars');
-
-  function randomRange(min, max) {
-    return Math.random() * (max - min) + min;
-  }
-
-  for (let i = 0; i < starCount; i++) {
-    const star = document.createElement('div');
-    star.classList.add('star');
-
-    // Random size between 1px and 3px
-    const size = randomRange(1, 3);
-    star.style.width = `${size}px`;
-    star.style.height = `${size}px`;
-
-    // Random position in viewport
-    star.style.top = `${Math.random() * 100}%`;
-    star.style.left = `${Math.random() * 100}%`;
-
-    // Random animation duration between 2s and 5s
-    star.style.animationDuration = `${randomRange(2, 5)}s`;
-
-    // Random animation delay so stars twinkle independently
-    star.style.animationDelay = `${randomRange(0, 5)}s`;
-
-    starsContainer.appendChild(star);
-  }
-</script>
 </body>
 </html>
