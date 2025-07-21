@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Wave Gradient Text</title>
+<title>Wave Gradient Text SVG</title>
 <style>
   body {
     margin: 0;
@@ -14,17 +14,29 @@
     align-items: center;
     font-family: monospace, monospace;
   }
-  .wave-text {
-    font-size: 3rem;
-    font-weight: bold;
-    display: inline-block;
-    background: linear-gradient(135deg, #4B0082, #3A0CA3, #8A2BE2, #4B0082);
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
+  svg {
+    overflow: visible;
   }
-  .wave-text span {
+  text {
+    font-size: 72px;
+    font-weight: bold;
+    font-family: monospace, monospace;
+    fill: url(#grad);
+  }
+  tspan {
+    animation: wave 1.5s ease-in-out infinite;
     display: inline-block;
-    animation: w
+  }
+  @keyframes wave {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+</style>
+</head>
+<body>
+
+<svg id="wave-svg" viewBox="0 0 500 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Email me">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4B0082"/>
+      <st
