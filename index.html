@@ -1,30 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Contact & Work</title>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Courier Prime', monospace;
-      background-color: #000000;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      user-select: none;
-      gap: 2rem;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Slithering Gradient Text</title>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet" />
+<style>
+  body {
+    margin: 0;
+    font-family: 'Courier Prime', monospace;
+    background-color: #000;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    user-select: none;
+  }
+
+  a {
+    font-size: 2.5rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #4B0082, #3A0CA3, #8A2BE2, #4B0082);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    text-decoration: none;
+    cursor: pointer;
+    animation: slither 4s ease-in-out infinite;
+  }
+
+  a:hover {
+    filter: brightness(1.2);
+  }
+
+  @keyframes slither {
+    0% {
+      background-position: 0% 50%;
     }
-
-    a {
-      font-size: 2.5rem;
-      font-weight: bold;
-      background: linear-gradient(135deg, #4B0082, #3A0CA3, #8A2BE2);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: t
-
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+</style>
+</head>
+<body>
+  <a href="mailto:plazaluis4002@GMAIL.COM" aria-label="Send Email">Email me</a>
+  <a href="https://plazawrites.substack.com" target="_blank" rel="noopener noreferrer" aria-label="Visit My Work">My Work</a>
+</body>
+</html>
