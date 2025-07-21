@@ -5,50 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Snake Wave Email + Works</title>
 <style>
-  body {
+  body, html {
     margin: 0;
+    height: 100%;
     background-color: black;
-    height: 100vh;
+    font-family: monospace, monospace;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: monospace, monospace;
+  }
+  .container {
+    display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 40px;
+    align-items: center;
   }
   a.wave-text, a.works-link {
     font-size: 3rem;
     font-weight: bold;
     text-decoration: none;
-    display: inline-block;
-    white-space: nowrap;
-  }
-  /* Purple snake wave */
-  a.wave-text {
-    color: #8A2BE2;
-  }
-  a.wave-text span {
-    display: inline-block;
-    animation: snakeWave 2s ease-in-out infinite;
-  }
-  /* Red gradient snake wave */
-  a.works-link {
-    background: linear-gradient(90deg, #ff0000, #ff5555, #cc0000);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-  }
-  a.works-link span {
-    display: inline-block;
-    animation: snakeWave 2s ease-in-out infinite;
-  }
-  @keyframes snakeWave {
-    0%, 100% {
-      transform: translate(0, 0);
-    }
-    25% {
-      transform: translate(5px, -10px);
-    }
-    50% {
-      transform: translate(10px, 0);
+    white-space: nowra
